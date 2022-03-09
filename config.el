@@ -113,6 +113,9 @@
 (set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
 (set-fontset-font t 'symbol "Symbola" nil 'append)
 
+;;php
+(setq +php-default-docker-container t)
+;;end
 ;; This is the vanilla font config. Use it when doom can't
 ;; handle some fonts.
 ;;(set-face-attribute 'default nil :font "Droid Sans Mono")
