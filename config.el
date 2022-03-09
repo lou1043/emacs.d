@@ -1,14 +1,40 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
+;; [[file:config.org::*Personal Information][Personal Information:1]]
+;; FIXME
+(setq user-full-name "lou1043"
+      user-mail-address "icewarden@pm.me")
+;; Personal Information:1 ends here
+
+;; [[file:config.org::*Personal Information][Personal Information:1]]
 ;; 通过 Emacs-china 的仓库来安装包, 提升安装速度
 ;; FIXME
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; user
-;; FIXME
-(setq user-full-name "lou1043"
-      user-mail-address "icewarden@pm.me")
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Personal Information:1 ends here
+
+;; [[file:config.org::*Simple settings][Simple settings:1]]
+(setq-default
+ delete-by-moving-to-trash t                      ; Delete files to trash
+ window-combination-resize t                      ; take new window space from all other windows (not just current)
+ x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+
+(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
+      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
+      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
+      password-cache-expiry nil                   ; I can trust my computers ... can't I?
+      scroll-preserve-screen-position 'always     ; Don't have `point' jump around
+      scroll-margin 2                             ; 窗口滚动时, 光标所在行不要顶到边缘, 留两行的 Buffer
+      word-wrap-by-category t                     ; Different languages live together happily
+      org-return-follows-link t)                  ; Organise it!
+
+(display-time-mode 1)                             ; Enable time in the mode-line
+
+(global-subword-mode 1)                           ; Iterate through CamelCase words
+
+;; Useset C-z which is bound to =suspend-frame= by default
+(global-unset-key (kbd "C-z"))
+;; Simple settings:1 ends here
 ;; ui
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 关掉 Doom 自己的 Theme
@@ -90,10 +116,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; No fringe
 (fringe-mode '(0 . 0))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 窗口滚动时, 光标所在行不要顶到边缘, 留两行的 Buffer
-(setq scroll-margin 2)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Line cursor and no blink
 (set-default 'cursor-type  '(bar . 3))
 (blink-cursor-mode 0)
