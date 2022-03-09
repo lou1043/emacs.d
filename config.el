@@ -35,8 +35,26 @@
 ;; Useset C-z which is bound to =suspend-frame= by default
 (global-unset-key (kbd "C-z"))
 ;; Simple settings:1 ends here
-;; ui
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; [[file:config.org::*Frame sizing][Frame sizing:1]]
+;;(add-to-list 'default-frame-alist '(height . 24))
+;;(add-to-list 'default-frame-alist '(width . 80))
+(push  '(alpha-background . 95) default-frame-alist)
+(add-to-list 'initial-frame-alist '(fullscreen . maximized)
+             )
+;; Frame sizing:1 ends here
+
+;; [[file:config.org::*Auto-customisations][Auto-customisations:1]]
+(setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
+;; Auto-customisations:1 ends here
+
+;; [[file:config.org::*Mouse][Mouse:1]]
+(setq mouse-yank-at-point nil)
+;; Mouse:1 ends here
+
+;; [[file:config.org::*Theme and modeline][Theme and modeline:1]]
 ;; 关掉 Doom 自己的 Theme
 (setq doom-theme nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -61,17 +79,73 @@
                 (with-selected-frame frame
                   (set-cursor-color custom-blue))))
   (set-cursor-color custom-blue))
+;; Theme and modeline:1 ends here
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; fonts
-(setq doom-font (font-spec :family "JetBrains Mono" :weight 'light :size 18)
-      doom-big-font (font-spec :family "JetBrains Mono" :weight 'light :size 35)
-      doom-variable-pitch-font (font-spec :family "CMU Typewriter Text" :size 22)
-      doom-unicode-font (font-spec :family "LXGW WenKai" :weight 'light :size 20)
-      doom-serif-font (font-spec :family "CMU Typewriter Text" :weight 'light :size 22))
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; [[file:config.org::*Theme and modeline][Theme and modeline:2]]
+;; VitalyR 的主题配置
+;;(setq doom-theme 'doom-solarized-light)
+;;(use-package doom-themes
+;;  :config
+;;  ;;Global settings (defaults)
+;;  (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
+;;        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+;;  (doom-themes-treemacs-config)
+;;  ;;(doom-themes-org-config)
+;;  )
+;;(remove-hook 'window-setup-hook #'doom-init-theme-h)
+;;(add-hook 'after-init-hook #'doom-init-theme-h 'append)
+;;(delq! t custom-theme-load-path)
+
+;;(custom-set-faces!
+;;  '(doom-modeline-buffer-modified :foreground "orange"))
+;; Theme and modeline:2 ends here
+
+;; [[file:config.org::*Font Face][Font Face:1]]
+(setq doom-font (font-spec :family "JetBrains Mono" :weight 'light :size 19)
+      doom-big-font (font-spec :family "JetBrains Mono" :weight 'light :size 36)
+      doom-variable-pitch-font (font-spec :family "CMU Typewriter Text" :size 23)
+      doom-unicode-font (font-spec :family "LXGW WenKai" :weight 'light :size 21)
+      doom-serif-font (font-spec :family "CMU Typewriter Text" :weight 'light :size 23))
+
+;; Emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴󠁿
+(set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
+(set-fontset-font t 'symbol "Apple Color Emoji")
+(set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
+(set-fontset-font t 'symbol "Symbola" nil 'append)
+
+;; This is the vanilla font config. Use it when doom can't
+;; handle some fonts.
+;;(set-face-attribute 'default nil :font "Droid Sans Mono")
+;; Latin
+;;(set-fontset-font t 'latin "Noto Sans")
+;; East Asia: 你好, 早晨, こんにちは, 안녕하세요
+;;
+;; This font requires "Regular". Other Noto fonts dont.
+;; ¯\_(ツ)_/¯
+;; (set-fontset-font t 'han "Noto Sans CJK SC Regular")
+;; (set-fontset-font t 'kana "Noto Sans CJK JP Regular")
+;; (set-fontset-font t 'hangul "Noto Sans CJK KR Regular")
+;; (set-fontset-font t 'cjk-misc "Noto Sans CJK SC Regular")
+;; Font Face:1 ends here
+
+;; [[file:config.org::*Miscellaneous][Miscellaneous:2]]
+(add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+;; Miscellaneous:2 ends here
+
+;; [[file:config.org::*Company][Company:1]]
+(after! company
+  (setq company-idle-delay 0.5
+        company-minimum-prefix-length 2)
+  (setq company-show-numbers t)
+  ;;(add-hook 'evil-normal-state-entry-hook #'company-abort) ;; make aborting less annoying.
+  )
+;; Company:1 ends here
+
+;; [[file:config.org::*Company][Company:3]]
+(setq-default history-length 1000)
+(setq-default prescient-history-length 1000)
+;; Company:3 ends here
+
 ;; org-mode
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
