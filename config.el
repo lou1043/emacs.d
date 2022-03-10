@@ -56,48 +56,48 @@
 
 ;; [[file:config.org::*Theme and modeline][Theme and modeline:1]]
 ;; 关掉 Doom 自己的 Theme
-(setq doom-theme nil)
+;; (setq doom-theme nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 使用 nano-emacs theme
-(require 'disp-table)
-(require 'nano-faces)
-(require 'nano-colors)
-(require 'nano-theme)
-(require 'nano-help)
-(require 'nano-modeline)
-(nano-faces)
-(nano-theme)
+;;(require 'disp-table)
+;;(require 'nano-faces)
+;;(require 'nano-colors)
+;;(require 'nano-theme)
+;;(require 'nano-help)
+;;(require 'nano-modeline)
+;;(nano-faces)
+;;(nano-theme)
 
-(setq display-line-numbers-type nil
-      evil-default-cursor t
-      custom-blue "#718591"
-      custom-yellow "#BDA441")
+;;(setq display-line-numbers-type nil
+;;      evil-default-cursor t
+;;      custom-blue "#718591"
+;;      custom-yellow "#BDA441")
 
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (with-selected-frame frame
-                  (set-cursor-color custom-blue))))
-  (set-cursor-color custom-blue))
+;;(if (daemonp)
+;;    (add-hook 'after-make-frame-functions
+;;              (lambda (frame)
+;;                (with-selected-frame frame
+;;                  (set-cursor-color custom-blue))))
+;;  (set-cursor-color custom-blue))
 ;; Theme and modeline:1 ends here
 
 ;; [[file:config.org::*Theme and modeline][Theme and modeline:2]]
 ;; VitalyR 的主题配置
-;;(setq doom-theme 'doom-solarized-light)
-;;(use-package doom-themes
-;;  :config
-;;  ;;Global settings (defaults)
-;;  (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
-;;        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;;  (doom-themes-treemacs-config)
-;;  ;;(doom-themes-org-config)
-;;  )
-;;(remove-hook 'window-setup-hook #'doom-init-theme-h)
-;;(add-hook 'after-init-hook #'doom-init-theme-h 'append)
-;;(delq! t custom-theme-load-path)
+(setq doom-theme 'doom-solarized-light)
+(use-package doom-themes
+  :config
+  ;;Global settings (defaults)
+  (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (doom-themes-treemacs-config)
+  ;;(doom-themes-org-config)
+  )
+(remove-hook 'window-setup-hook #'doom-init-theme-h)
+(add-hook 'after-init-hook #'doom-init-theme-h 'append)
+(delq! t custom-theme-load-path)
 
-;;(custom-set-faces!
-;;  '(doom-modeline-buffer-modified :foreground "orange"))
+(custom-set-faces!
+  '(doom-modeline-buffer-modified :foreground "orange"))
 ;; Theme and modeline:2 ends here
 
 ;; [[file:config.org::*Font Face][Font Face:1]]
@@ -137,8 +137,8 @@
 
 ;; [[file:config.org::*Company][Company:1]]
 (after! company
-  (setq company-idle-delay 0.5
-        company-minimum-prefix-length 2)
+  (setq company-idle-delay 0.1
+        company-minimum-prefix-length 0)
   (setq company-show-numbers t)
   ;;(add-hook 'evil-normal-state-entry-hook #'company-abort) ;; make aborting less annoying.
   )
