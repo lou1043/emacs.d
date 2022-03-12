@@ -2,8 +2,8 @@
 ;;; $DOOMDIR/packages.el
 
 ;; 鼠标放到加粗字符上, 可编辑修饰符, 离开即显示加粗后的效果
-(package! org-appear
-  :recipe (:host github :repo "awth13/org-appear"))
+;;(package! org-appear
+;;  :recipe (:host github :repo "awth13/org-appear"))
 ;; 鼠标放到 LaTeX 代码上, 可编辑状态, 离开即显示编译后的公式效果
 (package! org-fragtog)
 ;; 通过 orgmode 写博客, 使用此包即可
@@ -121,10 +121,10 @@
 ;; Systemd:1 ends here
 
 ;; [[file:config.org::*Lean][Lean:1]]
-(package! lean4-mode :recipe
-  (:host github
-   :repo "leanprover/lean4"
-   :files ("lean4-mode/*.el")))
+;;(package! lean4-mode :recipe
+;;  (:host github
+;;   :repo "leanprover/lean4"
+;;   :files ("lean4-mode/*.el")))
 ;; Lean:1 ends here
 
 ;; [[file:config.org::*Sage Math][Sage Math:1]]
@@ -194,7 +194,6 @@
 
 (package! xenops)
 
-(package! org-fragtog)
 
 (package! engrave-faces)
 

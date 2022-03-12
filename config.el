@@ -1,5 +1,4 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-
 ;; [[file:config.org::*Personal Information][Personal Information:1]]
 ;; FIXME
 (setq user-full-name "lou1043"
@@ -29,6 +28,8 @@
       org-return-follows-link t)                  ; Organise it!
 
 (display-time-mode 1)                             ; Enable time in the mode-line
+
+(setq x-underline-at-descent-line t)              ; 链接下划线下移了一些
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 
@@ -138,7 +139,7 @@
 ;; [[file:config.org::*Company][Company:1]]
 (after! company
   (setq company-idle-delay 0.1
-        company-minimum-prefix-length 0)
+        company-minimum-prefix-length 1)
   (setq company-show-numbers t)
   ;;(add-hook 'evil-normal-state-entry-hook #'company-abort) ;; make aborting less annoying.
   )
@@ -438,4 +439,3 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-;;
